@@ -1,0 +1,16 @@
+{
+  "name": "o4databasemodelling-ecommerceandhopital",
+  "version": "1.0.0",
+  "description": "backenf by chai or code",
+  "types": "module",
+  "license": "ISC",
+  "author": "nitin bhardwaj",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "nodemon": "nodemon  src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
