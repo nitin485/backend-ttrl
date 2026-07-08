@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 // import "dotenv/config";
 import mongoose, { connect } from "mongoose";
 import { DB_NAME } from "./constants.js";
-import connectDB from "./db/index.js"
+import connectDB from "./db/index.js";
 
 const app = express();
 
@@ -12,20 +12,10 @@ dotenv.config({
   path: "./src/.env",
 });
 
-
-const port = process.env.PORT || 9000;
+// const port = process.env.PORT || 9000;
 // const port = 8000;
 // ------------------------------
-app.get("/", (req, res) => {
-  res.send("Hello nitin");
-});
-app.get("/about", (req, res) => {
-  res.send("This is about page");
-});
-// --------------------------------------
 
-
-connectDB();
 
 // always use semicolon before iifee to good development practice and to avoid  conflict with other code
 // (async () => {
@@ -44,7 +34,6 @@ connectDB();
 
 // ----------------------------------------------
 // below is the 1st correct way to connect to the database and start the server using an IIFE (Immediately Invoked Function Expression):  in a single index.js file
-
 
 // (async () => {
 //   try {
@@ -69,4 +58,22 @@ connectDB();
 // --------------------------------------------------------------------------------------------------------
 
 // 2nd way to connect to the database by module approach......
+
+
+connectDB()
+.then(()=>{
+  app.on("error", (error) => {
+    console.log(
+      "cant able to connect to the dataase in index.js file",
+      error
+    );
+    throw error;
+  });
+  app.listen(process.env.PORT, () => {
+    console.log(`server is running on port ${process.env.PORT}`);
+  });
+})
+.catch((error) => {
+  console.error("Error while connecting to database", error);
+});
 
